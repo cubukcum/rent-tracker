@@ -51,4 +51,3 @@ const RentalForm = () => {
 };
 
 export default RentalForm;
-ssssssss

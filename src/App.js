@@ -3,12 +3,14 @@ import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
 import './App.css';
 import RentalForm from './components/RentalForm';
 import RentalList from './components/RentalList';
+import NavBar from './components/NavBar';
 
 function App() {
   return (
     <Router>
       <div className="App">
         <header className="App-header">
+            <NavBar />
           <nav>
             <Link to="/">Home</Link>
             <Link to="/add-rental">Add Rental</Link>
