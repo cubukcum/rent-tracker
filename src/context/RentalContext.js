@@ -1,4 +1,4 @@
-
+// src/context/RentalContext.js
 import React, { createContext, useReducer, useEffect } from 'react';
 import axios from 'axios';
 
@@ -10,10 +10,6 @@ const rentalReducer = (state, action) => {
       return action.payload;
     case 'ADD_RENTAL':
       return [...state, action.payload];
-    case 'REMOVE_RENTAL':
-      return state.filter(rental => rental.id !== action.payload);
-    case 'UPDATE_RENTAL':
-      return state.map(rental => rental.id === action.payload.id ? action.payload : rental);
     case 'MARK_PAID':
       return state.map(rental => rental.id === action.payload.id ? { ...rental, paid: true, paidDate: new Date(), note: action.payload.note } : rental);
     default:
@@ -26,8 +22,12 @@ const RentalProvider = ({ children }) => {
 
   useEffect(() => {
     const fetchRentals = async () => {
-      const response = await axios.get('http://localhost:5000/rentals');
-      dispatch({ type: 'SET_RENTALS', payload: response.data });
+      try {
+        const response = await axios.get('http://localhost:5000/rentals');
+        dispatch({ type: 'SET_RENTALS', payload: response.data });
+      } catch (error) {
+        console.error('Error fetching rentals:', error);
+      }
     };
     fetchRentals();
   }, []);
@@ -35,7 +35,11 @@ const RentalProvider = ({ children }) => {
   useEffect(() => {
     const saveRentals = async () => {
       rentals.forEach(async rental => {
-        await axios.put(`http://localhost:5000/rentals/${rental.id}`, rental);
+        try {
+          await axios.put(`http://localhost:5000/rentals/${rental.id}`, rental);
+        } catch (error) {
+          console.error('Error saving rental:', error);
+        }
       });
     };
     saveRentals();

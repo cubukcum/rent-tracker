@@ -1,0 +1,22 @@
+{
+  "rentals": [
+    {
+      "id": 1717877287892,
+      "name": "dasd",
+      "rent": "123",
+      "startDate": "2024-06-10",
+      "paid": false,
+      "paidDate": null,
+      "note": ""
+    },
+    {
+      "id": 1717877369124,
+      "name": "dasd",
+      "rent": "123",
+      "startDate": "2024-06-11",
+      "paid": false,
+      "paidDate": null,
+      "note": ""
+    }
+  ]
+}

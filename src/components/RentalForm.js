@@ -1,19 +1,26 @@
-// src/components/RentalForm.js (modified)
+// src/components/RentalForm.js
 import React, { useState, useContext } from 'react';
 import { RentalContext } from '../context/RentalContext';
+import axios from 'axios';
 
 const RentalForm = () => {
   const { dispatch } = useContext(RentalContext);
   const [name, setName] = useState('');
   const [rent, setRent] = useState('');
   const [startDate, setStartDate] = useState('');
-  
-  const handleSubmit = (e) => {
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    dispatch({ type: 'ADD_RENTAL', payload: { id: Date.now(), name, rent, startDate, paid: false, paidDate: null, note: '' } });
-    setName('');
-    setRent('');
-    setStartDate('');
+    const newRental = { id: Date.now(), name, rent, startDate, paid: false, paidDate: null, note: '' };
+    try {
+      const response = await axios.post('http://localhost:5000/rentals', newRental);
+      dispatch({ type: 'ADD_RENTAL', payload: response.data });
+      setName('');
+      setRent('');
+      setStartDate('');
+    } catch (error) {
+      console.error('Error adding rental:', error);
+    }
   };
 
   return (
