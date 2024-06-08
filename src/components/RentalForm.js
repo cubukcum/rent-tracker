@@ -1,4 +1,3 @@
-// src/components/RentalForm.js
 import React, { useState, useContext } from 'react';
 import { RentalContext } from '../context/RentalContext';
 import axios from 'axios';
@@ -52,3 +51,4 @@ const RentalForm = () => {
 };
 
 export default RentalForm;
+ssssssss

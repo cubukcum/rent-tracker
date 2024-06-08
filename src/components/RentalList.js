@@ -1,4 +1,3 @@
-// src/components/RentalList.js (modified)
 import React, { useContext, useState } from 'react';
 import { RentalContext } from '../context/RentalContext';
 
