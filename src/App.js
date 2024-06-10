@@ -9,14 +9,7 @@ function App() {
   return (
     <Router>
       <div className="App">
-        <header className="App-header">
             <NavBar />
-          <nav>
-            <Link to="/">Home</Link>
-            <Link to="/add-rental">Add Rental</Link>
-            <Link to="/view-rentals">View Rentals</Link>
-          </nav>
-        </header>
         <main>
           <Routes>
             <Route path="/" element={<h1>Welcome to the Rental Tracker</h1>} />

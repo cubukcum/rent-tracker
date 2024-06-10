@@ -1,7 +1,7 @@
 {
   "rentals": [
     {
-      "id": 1717877287892,
+      "id": "1717877287892",
       "name": "dasd",
       "rent": "123",
       "startDate": "2024-06-10",
@@ -10,10 +10,19 @@
       "note": ""
     },
     {
-      "id": 1717877369124,
+      "id": "1717877369124",
       "name": "dasd",
       "rent": "123",
       "startDate": "2024-06-11",
+      "paid": false,
+      "paidDate": null,
+      "note": ""
+    },
+    {
+      "id": 1718043546633,
+      "name": "fsdfsdfsd",
+      "rent": "123456",
+      "startDate": "2024-06-05",
       "paid": false,
       "paidDate": null,
       "note": ""
