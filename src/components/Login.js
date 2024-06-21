@@ -1,45 +1,41 @@
-import React, { useState } from 'react';
+// src/components/Login.js
+import React, { useState, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
-import './Login.css';
+import { AuthContext } from '../context/AuthContext';
 
-
-const Login = ({ setIsAuthenticated }) => {
+const Login = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const { login, userRole } = useContext(AuthContext);
   const navigate = useNavigate();
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Simple authentication check for demonstration purposes
-    if (username === 'admin' && password === 'password') {
-      setIsAuthenticated(true);
-      navigate('/view-rentals');
-    } else {
-      alert('Invalid credentials');
+    login(username, password);
+    if (userRole === 'admin') {
+      navigate('/landlord-dashboard');
+    } else if (userRole === 'tenant') {
+      navigate('/tenant-dashboard');
     }
   };
 
   return (
-    <div className="login-container">
-      <form onSubmit={handleSubmit}>
-        <h2>Admin Login</h2>
-        <input
-          type="text"
-          placeholder="Username"
-          value={username}
-          onChange={(e) => setUsername(e.target.value)}
-          required
-        />
-        <input
-          type="password"
-          placeholder="Password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          required
-        />
-        <button type="submit">Login</button>
-      </form>
-    </div>
+    <form onSubmit={handleSubmit}>
+      <h2>Login</h2>
+      <input 
+        type="text" 
+        placeholder="Username" 
+        value={username} 
+        onChange={(e) => setUsername(e.target.value)} 
+      />
+      <input 
+        type="password" 
+        placeholder="Password" 
+        value={password} 
+        onChange={(e) => setPassword(e.target.value)} 
+      />
+      <button type="submit">Login</button>
+    </form>
   );
 };
 
